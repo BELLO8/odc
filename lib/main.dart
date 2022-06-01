@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:odc/screens/SplashScreen.dart';
 
+import 'screens/details.dart';
 import 'screens/homeScreen.dart';
 
 void main() {
@@ -26,6 +27,7 @@ class _MyAppState extends State<MyApp> {
       home: Splash(),
       routes: {
         '/Home': (context) => Home(),
+        '/Detail': (context) => Details(),
       },
     );
   }

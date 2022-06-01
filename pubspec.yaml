@@ -63,8 +63,9 @@ flutter:
     - assets/images/orange.png
     - assets/images/orange1.png
     - assets/images/ORANGE-Ok.jpeg
-    - assets/images/O-digital-tour-Ayana-4.jpeg
-    
+    - assets/images/digital.jpeg
+    - assets/images/fem.jpeg
+   
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

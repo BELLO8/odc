@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
   int activePage = 1;
   List<String> images = [
     "assets/images/ORANGE-Ok.jpeg",
-    "assets/images/O-digital-tour-Ayana-4.jpeg",
+    "assets/images/digital.jpeg",
     "assets/images/ORANGE-Ok.jpeg"
   ];
   int _currentIndex = 0;
@@ -70,116 +70,174 @@ class _HomeState extends State<Home> {
           SizedBox(width: 196),
           Column(
             children: [
-              SizedBox(height: 8, width: 12),
               TextButton(
                 onPressed: () {},
-                child: Text("Se connecter",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold)),
+                child: Row(
+                  children: [
+                    Text(
+                      "Se connecter",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(13)),
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(),
+                        child: Icon(
+                          Icons.person,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               )
             ],
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(13)),
-            child: Container(
-              height: 40,
-              width: 40,
-              decoration: BoxDecoration(),
-              child: Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
-            ),
-          ),
         ],
       ),
-      body: Container(
-        child: Column(
-          children: [
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 550.0,
-                viewportFraction: 1.0,
-                enlargeCenterPage: false,
-                autoPlay: true,
-                onPageChanged: (index, reason) {
-                  setState(
-                    () {
-                      _currentIndex = index;
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              CarouselSlider(
+                options: CarouselOptions(
+                  height: 500.0,
+                  viewportFraction: 1.0,
+                  enlargeCenterPage: false,
+                  autoPlay: true,
+                  onPageChanged: (index, reason) {
+                    setState(
+                      () {
+                        _currentIndex = index;
+                      },
+                    );
+                  },
+                ),
+                items: images.map((i) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Column(
+                        children: [
+                          Image.asset('$i'),
+                          Container(
+                            height: 220.0,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 19, 19, 19)),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 12,
+                                ),
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    '${titles[_currentIndex]}',
+                                    style: TextStyle(
+                                      fontSize: 24.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFFFF6600),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 8, width: 28),
+                                Text(
+                                  '${desc[_currentIndex]}',
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFFFFFFFF),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 12,
+                                ),
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: OutlinedButton(
+                                    child: Text('DECOUVRIR'),
+                                    style: OutlinedButton.styleFrom(
+                                      primary: Colors.white,
+                                      side: BorderSide(
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255),
+                                          width: 2),
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children:
+                                  indicators(images.length, _currentIndex),
+                            ),
+                          ),
+                        ],
+                      );
                     },
                   );
-                },
+                }).toList(),
               ),
-              items: images.map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Column(
+              Card(
+                clipBehavior: Clip.antiAlias,
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: const Text(
+                        'Card title 1',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      ),
+                      subtitle: Text(
+                        'Secondary Text',
+                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'Greyhound divisively hello coldly wonderfully marginally far upon excluding.',
+                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                      ),
+                    ),
+                    ButtonBar(
+                      alignment: MainAxisAlignment.start,
                       children: [
-                        Image.asset('$i'),
-                        Container(
-                          height: 240.0,
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 19, 19, 19)),
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 12,
-                              ),
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  '${titles[_currentIndex]}',
-                                  style: TextStyle(
-                                    fontSize: 24.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFFFF6600),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 8, width: 28),
-                              Text(
-                                '${desc[_currentIndex]}',
-                                style: TextStyle(
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFFFFFFFF),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 12,
-                              ),
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: OutlinedButton(
-                                  child: Text('DECOUVRIR'),
-                                  style: OutlinedButton.styleFrom(
-                                    primary: Colors.white,
-                                    side: BorderSide(
-                                        color:
-                                            Color.fromARGB(255, 255, 255, 255),
-                                        width: 2),
-                                  ),
-                                  onPressed: () {},
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          color: Color.fromARGB(255, 0, 0, 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: indicators(images.length, _currentIndex),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: OutlinedButton(
+                            child: Text(
+                              'DECOUVRIR',
+                              style: TextStyle(
+                                   fontSize: 15),
+                            ),
+                            style: OutlinedButton.styleFrom(
+                              primary: Color.fromARGB(255, 211, 101, 18),
+                              side: BorderSide(
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  width: 2),
+                            ),
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/Detail');
+                            },
                           ),
                         ),
                       ],
-                    );
-                  },
-                );
-              }).toList(),
-            ),
-          ],
+                    ),
+                    Image.asset('assets/images/fem.jpeg'),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
